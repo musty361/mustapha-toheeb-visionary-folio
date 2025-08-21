@@ -9,7 +9,7 @@ const Projects = () => {
       image: "/api/placeholder/600/400",
       tags: ["React", "Node.js", "PostgreSQL", "Stripe", "Redis"],
       github: "https://github.com/musty361/ecommerce-platform",
-      live: "https://ecommerce-platform-harbbey360.vercel.app",
+      live: "/demo/ecommerce",
       icon: Globe,
       featured: true
     },
@@ -19,7 +19,7 @@ const Projects = () => {
       image: "/api/placeholder/600/400",
       tags: ["Next.js", "TypeScript", "Prisma", "WebSockets"],
       github: "https://github.com/musty361/task-management-app",
-      live: "https://task-management-harbbey360.vercel.app",
+      live: "/demo/task-management",
       icon: Code,
       featured: true
     },
@@ -29,7 +29,7 @@ const Projects = () => {
       image: "/api/placeholder/600/400",
       tags: ["React", "Python", "FastAPI", "Chart.js"],
       github: "https://github.com/musty361/social-media-dashboard",
-      live: "https://social-dashboard-harbbey360.vercel.app",
+      live: "/demo/social-dashboard",
       icon: Database,
       featured: false
     },
