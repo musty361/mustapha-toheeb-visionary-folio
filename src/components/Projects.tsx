@@ -8,8 +8,8 @@ const Projects = () => {
       description: "Full-stack e-commerce solution with payment integration, inventory management, and admin dashboard. Built with modern technologies for optimal performance.",
       image: "/api/placeholder/600/400",
       tags: ["React", "Node.js", "PostgreSQL", "Stripe", "Redis"],
-      github: "#",
-      live: "#",
+      github: "https://github.com/musty361/ecommerce-platform",
+      live: "https://ecommerce-platform-harbbey360.vercel.app",
       icon: Globe,
       featured: true
     },
@@ -18,8 +18,8 @@ const Projects = () => {
       description: "Collaborative project management tool with real-time updates, team collaboration features, and advanced analytics dashboard.",
       image: "/api/placeholder/600/400",
       tags: ["Next.js", "TypeScript", "Prisma", "WebSockets"],
-      github: "#",
-      live: "#",
+      github: "https://github.com/musty361/task-management-app",
+      live: "https://task-management-harbbey360.vercel.app",
       icon: Code,
       featured: true
     },
@@ -28,8 +28,8 @@ const Projects = () => {
       description: "Analytics platform for social media management with data visualization, automated reporting, and multi-platform integration.",
       image: "/api/placeholder/600/400",
       tags: ["React", "Python", "FastAPI", "Chart.js"],
-      github: "#",
-      live: "#",
+      github: "https://github.com/musty361/social-media-dashboard",
+      live: "https://social-dashboard-harbbey360.vercel.app",
       icon: Database,
       featured: false
     },
@@ -38,8 +38,8 @@ const Projects = () => {
       description: "Secure mobile banking application with biometric authentication, transaction history, and real-time notifications.",
       image: "/api/placeholder/600/400",
       tags: ["React Native", "Node.js", "MongoDB", "JWT"],
-      github: "#",
-      live: "#",
+      github: "https://github.com/musty361/mobile-banking-app",
+      live: "https://banking-app-harbbey360.vercel.app",
       icon: Smartphone,
       featured: false
     },
@@ -48,8 +48,8 @@ const Projects = () => {
       description: "Educational platform with course creation tools, progress tracking, interactive quizzes, and video streaming capabilities.",
       image: "/api/placeholder/600/400",
       tags: ["Vue.js", "Laravel", "MySQL", "AWS S3"],
-      github: "#",
-      live: "#",
+      github: "https://github.com/musty361/learning-management-system",
+      live: "https://lms-harbbey360.vercel.app",
       icon: Code,
       featured: false
     },
@@ -58,8 +58,8 @@ const Projects = () => {
       description: "Property listing and management system with virtual tours, mortgage calculator, and advanced search filters.",
       image: "/api/placeholder/600/400",
       tags: ["React", "Express.js", "PostgreSQL", "Mapbox"],
-      github: "#",
-      live: "#",
+      github: "https://github.com/musty361/real-estate-platform",
+      live: "https://real-estate-harbbey360.vercel.app",
       icon: Globe,
       featured: false
     }

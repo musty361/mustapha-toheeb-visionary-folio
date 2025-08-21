@@ -51,6 +51,7 @@ const Hero = () => {
             <Button 
               size="lg" 
               className="bg-primary hover:bg-primary/80 text-primary-foreground px-8 py-3 rounded-full hover-glow font-semibold"
+              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
             >
               View My Work
             </Button>
@@ -58,6 +59,7 @@ const Hero = () => {
               variant="outline" 
               size="lg"
               className="border-border hover:bg-secondary px-8 py-3 rounded-full hover-lift"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Get In Touch
             </Button>
@@ -74,7 +76,7 @@ const Hero = () => {
               <Linkedin className="w-6 h-6" />
             </a>
             <a 
-              href="https://github.com/toheeb"
+              href="https://github.com/musty361"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 glass-card rounded-full hover-lift hover-glow transition-all duration-300"
