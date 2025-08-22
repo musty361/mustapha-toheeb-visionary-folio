@@ -39,7 +39,7 @@ const Projects = () => {
       image: "/api/placeholder/600/400",
       tags: ["React Native", "Node.js", "MongoDB", "JWT"],
       github: "https://github.com/musty361/mobile-banking-app",
-      live: "https://banking-app-harbbey360.vercel.app",
+      live: "/demo/mobile-banking",
       icon: Smartphone,
       featured: false
     },
@@ -49,7 +49,7 @@ const Projects = () => {
       image: "/api/placeholder/600/400",
       tags: ["Vue.js", "Laravel", "MySQL", "AWS S3"],
       github: "https://github.com/musty361/learning-management-system",
-      live: "https://lms-harbbey360.vercel.app",
+      live: "/demo/learning-management",
       icon: Code,
       featured: false
     },
@@ -59,7 +59,7 @@ const Projects = () => {
       image: "/api/placeholder/600/400",
       tags: ["React", "Express.js", "PostgreSQL", "Mapbox"],
       github: "https://github.com/musty361/real-estate-platform",
-      live: "https://real-estate-harbbey360.vercel.app",
+      live: "/demo/real-estate",
       icon: Globe,
       featured: false
     }

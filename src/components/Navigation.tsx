@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "./ThemeToggle";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -61,7 +62,8 @@ const Navigation = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-2">
+            <ThemeToggle />
             <Button 
               onClick={() => scrollToSection("#contact")}
               className="bg-primary hover:bg-primary/80 text-primary-foreground hover-glow"
