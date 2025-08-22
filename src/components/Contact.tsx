@@ -2,6 +2,8 @@ import { Mail, Phone, MapPin, Linkedin, Github, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import * as React from "react";
+import { toast } from "@/hooks/use-toast";
 
 const Contact = () => {
   const contactInfo = [
@@ -30,6 +32,67 @@ const Contact = () => {
       href: null
     }
   ];
+
+  // Messaging via Zapier Webhook (stored locally for the site owner)
+  const [webhookUrl, setWebhookUrl] = React.useState<string>(() =>
+    localStorage.getItem('zapier_webhook_url') || ''
+  );
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
+  React.useEffect(() => {
+    localStorage.setItem('zapier_webhook_url', webhookUrl);
+  }, [webhookUrl]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!webhookUrl) {
+      toast({
+        title: 'Webhook required',
+        description: 'Add your Zapier webhook URL below to receive emails.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const payload = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      subject: formData.get('subject'),
+      message: formData.get('message'),
+      submittedAt: new Date().toISOString(),
+      page: window.location.href,
+    };
+
+    try {
+      await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        mode: 'no-cors',
+        body: JSON.stringify(payload),
+      });
+
+      toast({
+        title: 'Message sent',
+        description: "Your request was sent. Check your Zap history and Gmail inbox.",
+      });
+
+      form.reset();
+    } catch (error) {
+      console.error('Zapier webhook error:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to send. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section id="contact" className="py-20 relative">
@@ -109,15 +172,17 @@ const Contact = () => {
             <div className="glass-card p-8 rounded-2xl">
               <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
               
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium mb-2">
                       Name
                     </label>
-                    <Input 
+                    <Input
                       id="name"
+                      name="name"
                       placeholder="Your name"
+                      required
                       className="bg-secondary border-border focus:border-primary"
                     />
                   </div>
@@ -125,10 +190,12 @@ const Contact = () => {
                     <label htmlFor="email" className="block text-sm font-medium mb-2">
                       Email
                     </label>
-                    <Input 
+                    <Input
                       id="email"
+                      name="email"
                       type="email"
                       placeholder="your.email@example.com"
+                      required
                       className="bg-secondary border-border focus:border-primary"
                     />
                   </div>
@@ -138,9 +205,11 @@ const Contact = () => {
                   <label htmlFor="subject" className="block text-sm font-medium mb-2">
                     Subject
                   </label>
-                  <Input 
+                  <Input
                     id="subject"
+                    name="subject"
                     placeholder="Project discussion"
+                    required
                     className="bg-secondary border-border focus:border-primary"
                   />
                 </div>
@@ -149,22 +218,42 @@ const Contact = () => {
                   <label htmlFor="message" className="block text-sm font-medium mb-2">
                     Message
                   </label>
-                  <Textarea 
+                  <Textarea
                     id="message"
+                    name="message"
                     placeholder="Tell me about your project..."
                     rows={4}
+                    required
                     className="bg-secondary border-border focus:border-primary resize-none"
                   />
                 </div>
 
-                <Button 
+                <Button
                   type="submit"
                   size="lg"
+                  disabled={isSubmitting}
                   className="w-full bg-primary hover:bg-primary/80 text-primary-foreground hover-glow"
                 >
                   <Send className="w-4 h-4 mr-2" />
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
+
+                <div className="space-y-2 pt-4 border-t border-border/50">
+                  <label htmlFor="webhook" className="block text-xs text-muted-foreground">
+                    Zapier Webhook URL (owner only, stored locally)
+                  </label>
+                  <Input
+                    id="webhook"
+                    type="url"
+                    placeholder="https://hooks.zapier.com/hooks/catch/..."
+                    value={webhookUrl}
+                    onChange={(e) => setWebhookUrl(e.target.value)}
+                    className="bg-secondary border-border focus:border-primary"
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    Create a Zap: Webhooks by Zapier (Catch Hook) ➜ Gmail: Send Email.
+                  </p>
+                </div>
               </form>
 
               <div className="mt-6 text-center">
